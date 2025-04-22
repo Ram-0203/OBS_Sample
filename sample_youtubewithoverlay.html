@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cricket Broadcast Overlay</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .main-container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .half {
+      flex: 1;
+      position: relative;
+    }
+
+    video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      z-index: 10;
+    }
+
+    .team-info {
+      display: flex;
+      align-items: center;
+      color: lightgray;
+    }
+
+    .team-logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 12px;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-name {
+      font-weight: bold;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .team-score {
+      font-size: 1.1rem;
+      color: #FFD700;
+    }
+
+    .match-status {
+      background: linear-gradient(to right, #007bff, #0056b3);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 0 10px rgba(0,123,255,0.6);
+      text-align: center;
+    }
+
+    .extra-details {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .extra-details strong {
+      color: #FFD700;
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .overlay-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+      }
+
+      .match-status {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    
+    <!-- Left Side: Video Only -->
+    <div class="half">
+      <video autoplay loop muted playsinline>
+        <source src="sample.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Right Side: Video with Overlay -->
+    <div class="half">
+      <video autoplay loop muted playsinline>
+        <source src="sample.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Match Details Top Left -->
+      <div class="extra-details">
+        <div><strong>Ground:</strong> Peter May Sports Centre</div>
+        <div><strong>Date:</strong> 10/06/2017</div>
+        <div><strong>Umpires:</strong> Martin Johnson & Georgie Best</div>
+        <div><strong>Scorers:</strong> Amber Leonard & Chew Leonard</div>
+      </div>
+
+      <!-- Overlay Bar -->
+      <div class="overlay-bar">
+        <!-- Left Team Info -->
+        <div class="team-info">
+          <div class="team-logo">
+            <img src="https://www.mumbaiindians.com/static-assets/images/cssimages/logo.png" alt="Team 1 Logo">
+          </div>
+          <div class="team-details">
+            <span class="team-name">Chingford CC - 3rd XI</span>
+            <span class="team-score">100/2 (10.0)</span>
+          </div>
+        </div>
+
+        <!-- Center Match Status -->
+        <div class="match-status">Chingford Quackers CC - 2nd XI Won</div>
+
+        <!-- Right Team Info -->
+        <div class="team-info">
+          <div class="team-details" style="text-align: right; margin-right: 12px;">
+            <span class="team-score">101/1 (9.5)</span>
+            <span class="team-name">Chingford Quackers CC - 2nd XI</span>
+          </div>
+          <div class="team-logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-crXuod8nFBZGHWs8X1tsEMmxKvaWXc47KQ&s" alt="Team 2 Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
